@@ -35,6 +35,13 @@ class ArrayBasedList {
     deleteAll(element) {
         this.items = this.items.filter(item => item !== element);
     }
+
+    get(index) {
+        if (index < 0 || index >= this.items.length) {
+            throw new Error('Invalid index');
+        }
+        return this.items[index];
+    }
 }
 
 module.exports = ArrayBasedList;
