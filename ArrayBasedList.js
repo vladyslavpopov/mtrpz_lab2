@@ -31,6 +31,10 @@ class ArrayBasedList {
         }
         return this.items.splice(index, 1)[0];
     }
+
+    deleteAll(element) {
+        this.items = this.items.filter(item => item !== element);
+    }
 }
 
 module.exports = ArrayBasedList;
