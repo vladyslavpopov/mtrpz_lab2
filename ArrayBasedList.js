@@ -42,6 +42,12 @@ class ArrayBasedList {
         }
         return this.items[index];
     }
+
+    clone() {
+        const newList = new ArrayBasedList();
+        newList.items = this.items.slice();
+        return newList;
+    }
 }
 
 module.exports = ArrayBasedList;
