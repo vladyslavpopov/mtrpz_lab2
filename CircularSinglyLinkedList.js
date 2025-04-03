@@ -122,6 +122,41 @@ class CircularSinglyLinkedList {
             }
         }
     }
+
+    get(index) {
+        if (index < 0 || index >= this.size) {
+            throw new Error('Invalid index');
+        }
+        let current = this.tail.next;
+        for (let i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.value;
+    }
+
+    clone() {
+        const newList = new CircularSinglyLinkedList();
+        if (this.size === 0) return newList;
+        let current = this.tail.next;
+        for (let i = 0; i < this.size; i++) {
+            newList.append(current.value);
+            current = current.next;
+        }
+        return newList;
+    }
+
+    reverse() {
+        if (this.size < 2) return;
+        let prev = this.tail;
+        let current = this.tail.next;
+        for (let i = 0; i < this.size; i++) {
+            const next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        this.tail = this.tail.next;
+    }
 }
 
 module.exports = CircularSinglyLinkedList;
