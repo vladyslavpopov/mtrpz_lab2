@@ -63,6 +63,65 @@ class CircularSinglyLinkedList {
         }
         this.size++;
     }
+
+    delete(index) {
+        if (index < 0 || index >= this.size) {
+            throw new Error('Invalid index');
+        }
+        let deletedValue;
+        if (this.size === 1) {
+            deletedValue = this.tail.value;
+            this.tail = null;
+        } else if (index === 0) {
+            const head = this.tail.next;
+            deletedValue = head.value;
+            this.tail.next = head.next;
+        } else {
+            let prev = this.tail.next;
+            for (let i = 0; i < index - 1; i++) {
+                prev = prev.next;
+            }
+            const current = prev.next;
+            deletedValue = current.value;
+            prev.next = current.next;
+            if (index === this.size - 1) {
+                this.tail = prev;
+            }
+        }
+        this.size--;
+        return deletedValue;
+    }
+
+    deleteAll(element) {
+        if (this.size === 0) return;
+
+        let count = this.size;
+        let current = this.tail.next;
+        let prev = this.tail;
+        while (count > 0) {
+            if (current.value === element) {
+                if (this.size === 1) {
+                    this.tail = null;
+                    this.size = 0;
+                    return;
+                }
+                prev.next = current.next;
+                if (current === this.tail.next) {
+                    this.tail.next = current.next;
+                }
+                if (current === this.tail) {
+                    this.tail = prev;
+                }
+                this.size--;
+                current = prev.next;
+                count--;
+            } else {
+                prev = current;
+                current = current.next;
+                count--;
+            }
+        }
+    }
 }
 
 module.exports = CircularSinglyLinkedList;
