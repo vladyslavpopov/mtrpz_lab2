@@ -35,4 +35,16 @@ const ArrayBasedList = require('./ArrayBasedList');
 
     list.clear();
     assert.strictEqual(list.length(), 0, 'clear() is not working correctly');
+
+    const list1 = new ArrayBasedList();
+    list1.append('X');
+    list1.append('Y');
+    const list2 = new ArrayBasedList();
+    list2.append('Z');
+    list1.extend(list2);
+    assert.strictEqual(list1.length(), 3, 'extend() is not working correctly');
+    list2.clear();
+    assert.strictEqual(list1.length(), 3, 'extend() did not create an independent copy');
+
+    console.log('ArrayBasedList passed all tests.');
 })();
