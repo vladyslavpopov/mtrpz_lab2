@@ -64,6 +64,14 @@ class ArrayBasedList {
     clear() {
         this.items = [];
     }
+
+    extend(otherList) {
+        if (!(otherList instanceof ArrayBasedList)) {
+            throw new Error('Argument must be an instance of ArrayBasedList.');
+        }
+        const clonedOther = otherList.clone();
+        this.items = this.items.concat(clonedOther.items);
+    }
 }
 
 module.exports = ArrayBasedList;
