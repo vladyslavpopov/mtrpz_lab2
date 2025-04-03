@@ -24,6 +24,13 @@ class ArrayBasedList {
         }
         this.items.splice(index, 0, element);
     }
+
+    delete(index) {
+        if (index < 0 || index >= this.items.length) {
+            throw new Error('Invalid index');
+        }
+        return this.items.splice(index, 1)[0];
+    }
 }
 
 module.exports = ArrayBasedList;
