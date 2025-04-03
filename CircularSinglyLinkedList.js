@@ -35,6 +35,34 @@ class CircularSinglyLinkedList {
         }
         this.size++;
     }
+
+    insert(element, index) {
+        if (typeof element !== 'string' || element.length !== 1) {
+            throw new Error('Element must be a single character.');
+        }
+        if (index < 0 || index > this.size) {
+            throw new Error('Invalid index');
+        }
+        const newNode = new Node(element);
+        if (this.size === 0) {
+            newNode.next = newNode;
+            this.tail = newNode;
+        } else if (index === 0) {
+            newNode.next = this.tail.next;
+            this.tail.next = newNode;
+        } else {
+            let current = this.tail.next;
+            for (let i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            newNode.next = current.next;
+            current.next = newNode;
+            if (index === this.size) {
+                this.tail = newNode;
+            }
+        }
+        this.size++;
+    }
 }
 
 module.exports = CircularSinglyLinkedList;
