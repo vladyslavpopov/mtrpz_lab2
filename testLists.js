@@ -47,6 +47,9 @@ function runListTests(listName, ListClass) {
     list2.clear();
     assert.strictEqual(list1.length(), 3, 'extend() did not create an independent copy');
 
+    // This test is intentionally failing to demonstrate CI failure
+    assert.strictEqual(1 + 1, 3, 'Intentional failure for CI demonstration');
+
     console.log(`${listName} passed all tests.`);
 }
 
