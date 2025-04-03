@@ -157,6 +157,32 @@ class CircularSinglyLinkedList {
         }
         this.tail = this.tail.next;
     }
+
+    findFirst(element) {
+        if (this.size === 0) return -1;
+        let current = this.tail.next;
+        for (let i = 0; i < this.size; i++) {
+            if (current.value === element) return i;
+            current = current.next;
+        }
+        return -1;
+    }
+
+    findLast(element) {
+        if (this.size === 0) return -1;
+        let index = -1;
+        let current = this.tail.next;
+        for (let i = 0; i < this.size; i++) {
+            if (current.value === element) index = i;
+            current = current.next;
+        }
+        return index;
+    }
+
+    clear() {
+        this.tail = null;
+        this.size = 0;
+    }
 }
 
 module.exports = CircularSinglyLinkedList;
