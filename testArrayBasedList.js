@@ -16,4 +16,13 @@ const ArrayBasedList = require('./ArrayBasedList');
     const deleted = list.delete(2); // Removing 'B'; expected list: A, D, C
     assert.strictEqual(deleted, 'B', 'delete() is not working correctly');
     assert.strictEqual(list.length(), 3, 'delete() did not update the list length correctly');
+
+    list.append('A'); // Expected list: A, D, C, A
+    list.deleteAll('A'); // Expected list: D, C
+    assert.strictEqual(list.length(), 2, 'deleteAll() is not working correctly');
+    assert.strictEqual(list.findFirst('A'), -1, 'deleteAll() did not remove all occurrences');
+
+    const cloneList = list.clone();
+    cloneList.append('E');
+    assert.strictEqual(list.length(), 2, 'clone() creates a dependent copy');
 })();
