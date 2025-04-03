@@ -25,4 +25,14 @@ const ArrayBasedList = require('./ArrayBasedList');
     const cloneList = list.clone();
     cloneList.append('E');
     assert.strictEqual(list.length(), 2, 'clone() creates a dependent copy');
+
+    list.reverse(); // Expected list becomes: C, D
+    assert.strictEqual(list.get(0), 'C', 'reverse() is not working correctly');
+
+    list.append('D'); // Expected list: C, D, D
+    assert.strictEqual(list.findFirst('D'), 1, 'findFirst() is not working correctly');
+    assert.strictEqual(list.findLast('D'), 2, 'findLast() is not working correctly');
+
+    list.clear();
+    assert.strictEqual(list.length(), 0, 'clear() is not working correctly');
 })();
