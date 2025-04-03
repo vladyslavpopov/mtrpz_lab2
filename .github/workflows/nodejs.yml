@@ -25,4 +25,4 @@ jobs:
 
     - name: Run tests
       run: |
-        node testArrayBasedList.js
+        node testLists.js
