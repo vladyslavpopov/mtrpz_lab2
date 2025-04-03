@@ -183,6 +183,25 @@ class CircularSinglyLinkedList {
         this.tail = null;
         this.size = 0;
     }
+
+    extend(otherList) {
+        if (!(otherList instanceof CircularSinglyLinkedList)) {
+            throw new Error('Argument must be an instance of CircularSinglyLinkedList.');
+        }
+        const clonedOther = otherList.clone();
+        if (clonedOther.size === 0) return;
+        if (this.size === 0) {
+            this.tail = clonedOther.tail;
+            this.size = clonedOther.size;
+        } else {
+            const headThis = this.tail.next;
+            const headOther = clonedOther.tail.next;
+            this.tail.next = headOther;
+            clonedOther.tail.next = headThis;
+            this.tail = clonedOther.tail;
+            this.size += clonedOther.size;
+        }
+    }
 }
 
 module.exports = CircularSinglyLinkedList;
