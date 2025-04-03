@@ -48,6 +48,22 @@ class ArrayBasedList {
         newList.items = this.items.slice();
         return newList;
     }
+
+    reverse() {
+        this.items.reverse();
+    }
+
+    findFirst(element) {
+        return this.items.indexOf(element);
+    }
+
+    findLast(element) {
+        return this.items.lastIndexOf(element);
+    }
+
+    clear() {
+        this.items = [];
+    }
 }
 
 module.exports = ArrayBasedList;
